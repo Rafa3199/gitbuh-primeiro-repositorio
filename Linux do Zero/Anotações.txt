@@ -1,1 +1,34 @@
 Caderno de Anotações do Curso "Linux do Zero" da DIO:
+
+Comandos para do Git para o Github:
+ - Voltar na aula de Git/Github e fazer anotações
+
+Aula 01 - Navegando pelo sistema de Arquivos:
+	"ip a" - Ver informações sobre o IP em uso.
+	"clear" - Limpar a tela (ctrl + L faz a mesma coisa)
+	"pwd" - Mostra o caminho de onde o usuário está localizado
+
+No linux, a "/" indica o diretório raiz, a pasta mãe de todas as outras pastas. Como se fosse o diretório
+"Meus arquivos" no Windows.
+
+	"cd" - Chande Directory, usado para se mover entre as pastas nos linux.
+	"cd /" - Usado para voltar ao diretório raiz.
+	"cd /(nome do diretório ou arquivo)" - Vai se mover para algum diretório ou arquivo que esteja no diretório 
+							   raiz.
+	"cd (nome do diretório ou arquivo)" - Vai se mover para algum diretório ou arquivo que esteja no diretório
+							  atual do usuário.
+	"cd .." - Volta um diretório ou arquivo para trás.
+
+É possível mesclar esses dois argumentos, voltando para um lugar atrás e já entrando direto no diretório ou
+arquivo desejado
+
+	"cd ../(nome do arquivo ou diretório)"
+
+Para saber para onde ir, caso você não tenha costume com o Linux ou tenha entrado por um acesso remoto numa máquina
+aleatória, utilize o seguinte comando:
+
+	"ls" - O comando "ls" sozinho vai de cara mostrar todas as pastas disponíveis, seja do diretório principal
+		 ou de qualquer outro local que você esteja posicionado.
+
+O comando "ls" pode ser manipulado com alguns códigos complementares, que serão estudados mais para frente, de
+forma que a vizualização das pastas e arquivos disponíveis fique melhor disposta.
