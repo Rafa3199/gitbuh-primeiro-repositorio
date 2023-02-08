@@ -1,8 +1,5 @@
 Caderno de Anotações do Curso "Linux do Zero" da DIO:
 
-Comandos para do Git para o Github:
- - Voltar na aula de Git/Github e fazer anotações
-
 Aula 01 - Navegando pelo sistema de Arquivos:
 	"ip a" - Ver informações sobre o IP em uso.
 	"clear" - Limpar a tela (ctrl + L faz a mesma coisa)
@@ -18,6 +15,7 @@ No linux, a "/" indica o diretório raiz, a pasta mãe de todas as outras pastas
 	"cd (nome do diretório ou arquivo)" - Vai se mover para algum diretório ou arquivo que esteja no diretório
 							  atual do usuário.
 	"cd .." - Volta um diretório ou arquivo para trás.
+	"cd ~" - Vai direto para a pasta e diretório do usuário.
 
 É possível mesclar esses dois argumentos, voltando para um lugar atrás e já entrando direto no diretório ou
 arquivo desejado
@@ -32,3 +30,39 @@ aleatória, utilize o seguinte comando:
 
 O comando "ls" pode ser manipulado com alguns códigos complementares, que serão estudados mais para frente, de
 forma que a vizualização das pastas e arquivos disponíveis fique melhor disposta.
+
+	"ls | more" - Cria uma barra de rolagem ficticia, para melhor leitura de muitos dados que estejam disponíveis
+			  para o usuário.
+Obs.: Se em determinado ponto, for identificado o que se procura e não quiser ir até o final da lista disposta,
+é possível utilizar o comando: "left ctrl + C" para cancelar a visualização do comando "ls | more".
+
+Ainda com o comando "ls" é possível fazer uma busca direta pelo nome do arquivo
+
+	"ls (nome do arquivo)" - Vai retornar o nome do arquivo ou diretório ou uma mensagem de erro de não
+					 localização do arquivo ou diretório.
+	"ls (fração do nome do arquivo) - Vai retornar todos os arquivos com aquela fração, caso não se saiba o
+						     nome específico.
+	"ls (inicial do nome do arquivo) + * - Vai retornar todos os arquivos com aquela inicial, listando ainda
+							   subpastas ou arquivos dentro dos listados.
+	"ls m?g*" - Vai procurar um arquivo com inicial "m", qualquer coisa na segunda letra, obrigatoriamente "g"
+			na terceira letra e "*" para puxar todos os arquivos com essa correspondencia.
+
+Pode ainda ter a situação de vários arquivos com uma mesma raiz, e enumerações diferentes, exemplo:
+arquivo1.txt
+arquivo2.txt
+arquivo3.txt
+arquivo4.txt
+arquivo5.txt
+
+Nesse caso, o comando "ls" pode ser usado como filtro para exibir uma sessão específica dos arquivos, escolher um
+intervalo para não ser exibido, exibir apenas um intervalo específico.
+
+	"ls arquivo[1-3]" - Vai exibir os arquivos de 1 até 3
+	"ls arquivo[2,4]" - Vai exibir os arquivos 2 e 4
+	"ls arquivo[^3,5] - Vai exibir os arquivos 1, 2 e 4
+	"ls arquivo[^1-3} - Vai exibir os arquivos 2, 4 e 5
+
+É possível fazer uma busca em qualquer diretório, estando no diretório raiz ou um diretório qualquer, não há limite
+para o range que é possível fazer essa procura.
+
+	"ls /(nome do diretório)" - Vai listar os arquivos do diretório especificado.
