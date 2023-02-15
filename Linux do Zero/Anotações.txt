@@ -66,3 +66,38 @@ intervalo para não ser exibido, exibir apenas um intervalo específico.
 para o range que é possível fazer essa procura.
 
 	"ls /(nome do diretório)" - Vai listar os arquivos do diretório especificado.
+
+Para criar um diretório (pasta) no linux utilizamos o seguinte comando:
+
+	"mkdir" - Criar diretórios no Linux (Make Directory)
+	"mkdir 'a' 'b'" - Criar mais de um diretório ao mesmo tempo
+
+Tendo a autorização e sabendo o caminho específico, é possível criar pastas em qualquer lugar, de qualquer lugar.
+Supondo que o usuário esteja na raiz e queria criar uma pasta dentro do ambiente do usuário:
+
+	"mkdir /home/ubuntu/Planilhas/(nome do diretório a ser criado)" - Vai criar uma pasta nesse caminho, mesmo
+												estando na raiz.
+
+Para criar diretórios com nome composto utiliza-se aspas simples ('')
+
+	"mkdir '(nome do diretório)'" - Criar diretório com nome composto
+
+Já para excluir um diretório usamos o seguinte comando:
+
+	"rmdir" - Remover diretórios no Linux (Remove Directory)
+	"rmdir 'a' 'b'" - Remover mais de um diretório ao mesmo tempo
+
+Para excluir um arquivo, utiliza-se o "Remove" apenas:
+
+	"rm" - Remover arquivos no Linus
+	"rm arquivo*" - Vai excluir todos os arquivos que tenham "arquivo"
+	"rm *.txt" - Vai excluir todos os arquivos do tipo .txt
+	"rm -rf" - Remove forçadamento o diretório especificado, excluindo tudo o que tiver dentro do Diretório e o
+		     próprio Diretório.
+
+Aula 02 - Obtendo Ajuda com Comandos:
+	"--help" - Exibe a lista de comandos possíves para o comando que está tentando ser passado.
+
+É importante sempre ler a ajuda disponível, entender cada comando e saber a disponibilidade daquilo que você está
+tentando executar. Nem todos os comandos tem o "--help" disponível, mas existe o comando "man" para exibir uma
+ajuda descritiva do comando que você quer executar.
