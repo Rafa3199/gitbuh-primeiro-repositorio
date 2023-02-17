@@ -101,3 +101,91 @@ Aula 02 - Obtendo Ajuda com Comandos:
 É importante sempre ler a ajuda disponível, entender cada comando e saber a disponibilidade daquilo que você está
 tentando executar. Nem todos os comandos tem o "--help" disponível, mas existe o comando "man" para exibir uma
 ajuda descritiva do comando que você quer executar.
+
+No Linux, é possível criar usuários e aloca-los em grupos e cada grupo vai ter uma permissão específica.
+O usuário dos exercícios está no grupo "Admin" e "Sudo" o que permite a ele a quebra das faltas de permissões para
+executar alguns comandos, como excluir diretórios da raiz.
+Para fazer essa quebra, é necessário usar o comando "sudo" como pré-fixo do código desejado:
+
+	"sudo touch texto1.txt" - Vai criar um arquivo .txt independente do local que você esteja, liberando todas as
+					  permissões ao usuário.
+
+Porém só será possível utilizar o "sudo" se o usuário estiver dentro dos grupos "Admin" e "Sudo". Mais para frente
+vamos aprender a mover usuários entre grupos, criar grupos e editar permissões. (Já foi visto como fazer isso na
+AWS, pelas aulas da Escola da Nuvem).
+
+É possível também logar como usuário root direto e não ter que ficar quebrando as permissões do usuário.
+Fazemos isso primeiro atribuindo uma senha ao usuário root, que já está criado, mas precisa dessa senha atribuida
+para que ele possa ser acessado:
+
+	"sudo passwd root" - Atribuir senha de acesso ao usuário root
+
+Após a atribuição da senha, para logar no usuário root é preciso escrever o comando "su":
+
+	"su" - Acessa o usuário root (lembre da senha criada)
+
+Não é recomendado que o login no usuário root seja permanente, pois ele não possui nenhuma restrição e algo feito
+errado não pode ser desfeito tão facilmente no Linux, como por exemplo excluir uma diretório importante ou arquivo.
+Então assim que terminar as atividades do usuário root, faça "log off" através do comando "su" novamente, mas
+indicando o usuário desejado:
+
+	"su (nome do usuário)" - Sai do usuário root para qualquer outro usuário
+
+Note que essa mudança, a partir do usuário root, não vai requerer senha do usuário padrão, o que pode tende a ser
+extremamente delicado também. Então muito cuidado com todas as questões envolvendo o usuário root.
+
+Aula 03 - Trabalhando com Arquivos de Texto
+Diferente do Windows, exitem diversos tipos de editores de texto para Linux. Porém, existem dois que são mais
+famosos e que baseiam as aulas desse curso:
+- vi
+- nano
+
+O "vi" é um pouco mais complicado de ser manuseado, por questões de layout e comandos, já o nano mais simples e
+prático.
+Por exemplo:
+
+	"vi leiame.txt" - Vai criar um arquivo .txt e abrir direto para edição do mesmo
+
+Porém no "vi" a primeira tela não será a tela de edição de arquivo, é necessário dar um comando com a letra "i"
+para acessar a parte de edição do arquivo.
+
+Após a edição conculida, para editar e salvar o arquivo são necessários alguns comandos:
+
+	Tecla "esc" - Sai do modo de edição
+	Tecla ":" - Abre um mini prompt de comando para executar ações no arquivo
+		"q" - Dentro do prompt de ações vai sair do arquivo
+		"w" - Dentro do prompt de ações vai salvar o arquivo
+		"wq" - Dentro do prompt de ações vai salver e sair do arquivo
+
+Esse comandos foram ensinados em aula, sem conhecimento prévio, sério dificil utilizar a ferramenta "vi"
+
+Já o "nano" é mais prático, pois ele abre o arquivo direto na parte de edição e além disso, todos os comandos
+disponíveis para a ferramenta estão dispostos na parte debaixo.
+
+	"nano leiame.txt" - Vai criar um arquivo .txt e abrir direto para edição do mesmo
+
+É importante ressaltar que ele só vai criar um arquivo novo, caso o arquivo não exista ainda, funciona da mesma
+forma para o "vi".
+
+Aula 04 - Histórico de Comandos usuário
+	"history" - Esse comando vai listar todos os comandos utilizados pelo usuário que está logado
+	"!3" - Vai executar novamente o terceiro comando da lista de comandos utilizados pelo usuário
+	"!?ls?" - Vai executar o comando que for encontrado com esses paramentos, no caso mais provável um "ls"
+	"history | grep "(nome do diretório)" - Vai exibir o histórico de comandos utilizados para aquele diretório
+
+É possível alterar a maneira com o comando "history" é exibido:
+
+	"export HISTTIMEFORMAT= (ver tabelas de formatos)"
+
+%d - Dia
+%m - Mês
+%y - Ano
+%H - Horas
+%M - Minutos
+%S - Segundos
+%F - Data completa (Y-M-D format)
+%T - Tempo (H:S:M format)
+%c - Completo
+
+O comando "history" acompanhado de uma variável pode excluir, gerar arquivos dentre outras funções que estão
+disponíveis para consulta com o comando "--help".
