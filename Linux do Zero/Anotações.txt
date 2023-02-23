@@ -189,3 +189,74 @@ Aula 04 - Histórico de Comandos usuário
 
 O comando "history" acompanhado de uma variável pode excluir, gerar arquivos dentre outras funções que estão
 disponíveis para consulta com o comando "--help".
+
+Aula 05 - Criando Usuários no Sistema
+	"useradd (nome do usuário)" - Cria um novo usuário.
+
+Esse comando não aceita acento, espaço em branco ou caracter especial. É o comando básico para criação de usuários,
+como boa parte dos comandos e como tem sido visto até aqui, existem os complementos ao comando que executam ações
+específicas e que ajudam na hora de criar um usuário
+
+	"useradd joao -m" - Cria a pasta de usuário no diretório home
+	"useradd joao -c "(comentário)"" - Adiciona uma nota ao usuário, podendo conter acentos, espaços, etc.
+	"useradd joao -s (shell de comandos)" - Direciona o usário para o tipo de shell de comandos a ser usado
+	"useradd joao -e 26/06/2023" - Determina uma data específica para aquele usuário ser excluido do sistma
+	"useradd joao -m -c "(comentário)" -s (shell de comando) -e 26/06/2023" - Da pra fazer tudo ao mesmo tempo
+	
+	"useradd joao -p $(openssl passwd -crypt Senha123)" - Cria uma senha automaticamente para o usuário criado.
+										ATENÇÃO: Esse comando no funcionou no Ubuntu criado na
+											   AWS.
+
+Também é possível atribuir senha ao usuário criado, através do comando
+
+	"passwd (nome de usuário)" - Vai atribuir uma senha ao usuário especificado.
+
+Para excluir um usuário existe um comando muito parecido com o de criar o usuário
+
+	"userdel (nome do usuário)" - Exclui um usuário.
+
+O "userdel" pode ser acompanhado também de comando auxiliares para executar funções conjuntas na hora de excluir um
+usuário e elas podem ser entendidas através do comando "--help", como já visto antes.
+
+Caso queira editar alguma informação já criada ou editar algo que não foi criado por algum acaso, é possível usar o
+comando
+
+	"usermod" - Acompanhado de auxiliares, pode editar e adicionar todos os comandos de criação de um usuário.
+	"usermod (nome do usuário) -c "(Comentário)" - Vai editar o comentário ou adicionar um.
+	"usermod -e 26/02/2023" - Altera a data de expirar o usuário criado.
+
+Obs.: É possível passar o comando "-e" no "passwd" para determinar uma data limite para expirar a senha do usuário.
+ou até mesmo o "passwd -e" para resetar automaticamente no próximo login a senha.
+
+E como checar quais usuários estão cadastrados em sistema?
+
+	"cat /etc/passwd" - Vai listar uma série de informações, dentre elas, as informações de usuários cadastrados
+
+Aula 06 - Criando um script para criar vários usuários
+É possível ainda criar vários usuários ao mesmo tempo com um script, utilizando os comandos vistos anteriormente.
+Para criar o script, você pode tanto destinar para uma pasta já existe, como criar uma pasta nova e colocar o
+arquivo dentro dessa nova pasta.
+
+Crie o arquivo com o comando "nano" ou "vi" vistos anteriormente, com o final ".sh".
+Dentro do editor do arquivo, desenvolva o comando, criando um scritp que será executado pelo sistema. Exemplo:
+
+echo "Criando usuários do sistema..."
+useradd guest -c "Usuário convidado" -s /bin/bash -m -p $(openssl passwd -crypt Senha123)
+passwd guest -e
+
+useradd guest1 -c "Usuário convidado" -s /bin/bash -m -p $(openssl passwd -crypt Senha123)
+passwd guest1 -e
+
+useradd guest2 -c "Usuário convidado" -s /bin/bash -m -p $(openssl passwd -crypt Senha123)
+passwd guest2 -e
+
+useradd guest3 -c "Usuário convidado" -s /bin/bash -m -p $(openssl passwd -crypt Senha123)
+passwd guest3 -e
+echo "Finalizado!!"
+
+Salve o arquivo criado e saia do editor de arquivos.
+Utilize  comando "chmod +x (nome do arquivo).sh" para ativar o arquivo. - Vamos entender mais sobre esse comando
+												  mais para frente.
+Para executar o script digite "./(nome do arquivo).sh)"
+
+Pronto, todos os usuários foram criados e agora ao acessa-los a senha será redefinida.
