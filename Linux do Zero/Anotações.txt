@@ -337,3 +337,42 @@ Porém como visto acima, essas letras represetam números correspondentes, que p
 				- 1 (1) = Permissão de Execução
 				- 0 (0) = Nenhuma permissão
 	"chmod 7/5/0 /adm/" = chmod (dono/grupo/terceiros) (pasta ou arquivo)
+
+Aula 09 - Gerenciamento de Pacotes
+No linux, trabalhamos com repositórios, cada OS tem seu repositório e "de fábrica" a Ubuntu já vem com os seus,
+que nada mais é que "bancos" onde tudo que você precisar instalar o Linux vai puxar de lá.
+
+Nessa dinâmica, podemos gerenciar o que chamamos de pacote. Um pacote nada mais é que aplicações que usamos no
+linux. Todos os comandos que usamos foram instalados no OS, através de algum pacote.
+
+Conseguimos entender mais e gerenciar esses pacotes através dos comandos:
+
+	"apt-get"
+	"apt"
+
+Que essencialmente fazem a mesma coisa, com algumas diferenças sutis. Para entender melhor dos comandos e
+possibildiades com esses comandos, utilize o "--help" e estude. Mas vamos falar do básico que podemos fazer com
+esses comandos.
+
+	"apt list" - Vai listar todos os pacotes disponíveis nos repositórios instalados
+	"apt list --installed" - Vai listar todos os pacotes já instalados
+	"apt list --upgradeable" - Vai mostrar todos os pacotes disponíveis para atualização
+	"apt search (nome do pacote)" - Vai exibir todos os pacotes relacionados
+	"apt install (nome do pacote)" - Vai instalar o pacote específico
+	"apt install (nome do pacote) -y" - Vai pular a etapa de verificação (para scripts)
+	"wget (link da web)" - Vai buscar algum arquivo da web (HTTP) (puxei o arquivo do github através do link)
+	"apt remove (nome do pacote)" - Vai excluir o pacote específico
+	"apt remove (nome do pacote) -y" - Vai pular a etapa de verificação (para scripts)
+	"apt edit-sources" - Vai mostrar os repositórios instalados. É possível adicionar novos repositórios para
+				   mais opções de pacotes.
+	"apt update" - Vai baixar as atualizações de todos os pacotes instalados
+	"apt upgrade -y" - Vai instalar as atualizações baixadas de todos os pacotes instalados, pulando a etapa de 
+				 confirmação.
+
+Esses são alguns comandos básicos para Gerenciamento de Pacotes, existem vários outros e muitas outras possibilidades
+continue estudando!
+
+Obs: Num ambiente gráfico, aplicações são instaladas normalmente igual ao Windows, dois clicks e executar o arquivo.
+No ambiente gráfico (terminal), as aplicações podem ser instaladas através de um comando:
+
+	"apt install ./(nome do arquivo)" - Vai instalar uma aplicação qualquer
