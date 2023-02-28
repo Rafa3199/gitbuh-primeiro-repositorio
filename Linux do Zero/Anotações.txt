@@ -89,7 +89,7 @@ Já para excluir um diretório usamos o seguinte comando:
 
 Para excluir um arquivo, utiliza-se o "Remove" apenas:
 
-	"rm" - Remover arquivos no Linus
+	"rm" - Remover arquivos no Linux
 	"rm arquivo*" - Vai excluir todos os arquivos que tenham "arquivo"
 	"rm *.txt" - Vai excluir todos os arquivos do tipo .txt
 	"rm -rf" - Remove forçadamento o diretório especificado, excluindo tudo o que tiver dentro do Diretório e o
@@ -239,6 +239,7 @@ arquivo dentro dessa nova pasta.
 
 Crie o arquivo com o comando "nano" ou "vi" vistos anteriormente, com o final ".sh".
 Dentro do editor do arquivo, desenvolva o comando, criando um scritp que será executado pelo sistema. Exemplo:
+#!/bin/bash
 
 echo "Criando usuários do sistema..."
 useradd guest -c "Usuário convidado" -s /bin/bash -m -p $(openssl passwd -crypt Senha123)
@@ -260,3 +261,79 @@ Utilize  comando "chmod +x (nome do arquivo).sh" para ativar o arquivo. - Vamos 
 Para executar o script digite "./(nome do arquivo).sh)"
 
 Pronto, todos os usuários foram criados e agora ao acessa-los a senha será redefinida.
+
+Obs.: Se estiver programando pelo Ubuntu virtual no EC2 da AWS, o comando passwd não irá funcionar com o "-crypt"
+	sendo necessário não utilizar esse comando para o correto funcionamento desse script na plataforma da AWS.
+
+Aula 07 - Determinando e Criando novos Grupos para Usuários
+Para um usuário já cadastrado no sistema, a melhor maneira de realoca-lo a um grupo é através do comando "usermod"
+como vimos anteriormente.
+
+	"usermod -G (grupo 1, grupo 2, ...) (nome do usuário)" - Vai adicionar o usuário já criado dentro dos grupos
+										   especificados.
+	"usermod -g (nome do grupo) (nome do usuário)" - Vai adicionar o usuário a um novo grupo por vez.
+
+As vezesm para a mudança surtir efeito, é necessário fazer o logoff no sistema ou reinicia-lo.
+
+Já para criar um novo grupo, os comandos são bem parecidos com os comandos de criar e excluir novos usuários
+
+	"groupadd" - Adiciona um grupo
+	"groupdel" - Exclui um grupo
+
+Nos grupos o comando "usermod -G" vai ser usado para mover os usuários entre os grupos:
+
+	"usermod -G (grupo1,grupo2) (nome do usuário)" - Vai tirar o usuário de grupos que ele já esteja e move-lo
+									 para os grupos, ou o grupo, especificado.
+
+Para remover um usuário de um grupo, sem precisar move-lo, é só usar o comando "gpasswd":
+
+	"gpasswd -d (nome do usuário) (grupo)" - Sendo possível remover apenas de um grupo por vez.
+
+Aula 08 - Permissões
+Uma pasta criada, normalmente vai ser "posse" do Super Usuário, o "root". Mas é possível alterar isso através do
+comando "chown":
+
+	"chown (nome do usuário):(nome do grupo) /(nome do diretório)/" - Vamos entender melhor esse comando!
+
+Quando usamos o comando "ls -l" o prompt vai nos mostrar as permissões, quem é o dono, qual o grupo, entre outras
+informações relacionadas aos diretórios. O comando "chown" que significa "Change Owner" vai justamente mudar as
+informaçãoes referentes ao dono e grupo do diretório.
+
+	"chown (usuário que será o dono):(grupo de usuários que terão permissões) /(diretório referencia)"
+
+Ainda é possível alterar as permissões que o dono, o grupos e usuários de fora tem sobre os diretórios. Vamos fazer
+isso utilizando de uma comando já visto antes, mas entendendo cada etapa dele que é o comando "chmod". Mas antes,
+vamos entender a base do entendimento desse comando:
+
+Leitura (r) - 4
+Gravação (w) - 2
+Execução (x) - 1
+Nenhuma - 0
+
+Cada diretório ou arquivo criado vai vir com permissões espefícicas: 
+	"drwxr-xr--" - Se for um diretório
+	"-rwxr-xr--" - Se for um arquivo
+1ª letra: d = directory
+	    - = file
+2ª letra: r = leitura
+	    - = sem permissão de leitura
+3ª letra: w = editar, excluir e criar
+	    - = sem permissão de editar, excluir e criar
+4ª letra: x = executar, acessar arquivos/diretórios
+	    - = sem permissão de executar, acessar arquivos/diretórios
+
+As letras seguintes seguem a mesma lógica, porém no seguinte padrão de permissões:
+
+	"d/rwx/r-x/r--" - tipo de arquivo/permissões do dono/permissões do grupo/permissões de terceiros
+
+Porém como visto acima, essas letras represetam números correspondentes, que podem ser representados no comando:
+
+	"chmod 750 /adm/" - 7 (4+2+1) = Permissão total
+				- 6 (4+2) = Permissão de Leitura e Gravação
+				- 5 (4+1) = Permissão de Leitura e Execução
+				- 4 (4) = Permissão apenas de Leitura
+				- 3 (2+1) = Permissão de Gravação e Execução
+				- 2 (2) = Permissão de Gravação
+				- 1 (1) = Permissão de Execução
+				- 0 (0) = Nenhuma permissão
+	"chmod 7/5/0 /adm/" = chmod (dono/grupo/terceiros) (pasta ou arquivo)
