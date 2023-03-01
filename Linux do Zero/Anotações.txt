@@ -376,3 +376,81 @@ Obs: Num ambiente gráfico, aplicações são instaladas normalmente igual ao Wi
 No ambiente gráfico (terminal), as aplicações podem ser instaladas através de um comando:
 
 	"apt install ./(nome do arquivo)" - Vai instalar uma aplicação qualquer
+
+Aula 10 - Gerenciamento de Discos Linux
+Unix/Linux pode utilizar alguns tipos de Sistemas de Arquivos:
+- Ext3
+- Ext4
+- XFS
+
+Sistema de Arquivo nada mais é que um padrão, uma forma como o sistema operacional usa pra controlar como os dados
+são armazenados e recuperados.
+
+Quando dividimos um disco em partes, cada partição é independente, cada uma pode conter um sistema de arquivos
+diferente. Isso é o que chamamos de Particionamento.
+
+No linux, cada disco é reconhecido por uma inicial "sd". Se eu tiver 03 discos no meu computador eles vão ser
+reconhecidos como:
+- sda
+- sdb
+- sdc
+
+Dentro de cada disco ainda, podemos ter partições:
+- sda1
+- sda2
+- sda3
+- sdb1
+- sdb2...
+
+O comando "lsblk" vai listar todos os discos disponíveis no sistema.
+Para entrarmos dentro do disco, precisamos saber o caminho que ele está alocado:
+
+	"fdisk -l" - Vai listar todos os discos com informações mais detalhadas, inclusive o caminho de localização
+
+Ai assim, conseguimos ainda usando o "fdisk" entrar dentro de um disco específico:
+
+	"fdisk (caminho do disco)" - Para entrar no disco específico
+
+Dentro do disco, podemos usar o comando "m" para exibir todas as opções de execução dentro do disco, mas o passo a
+passo para particionar o disco é através da tecla "n".
+
+Após isso, pode seguir o caminho de particionar o disco como o sugerido (default).
+
+Criado a partição, para ela estar disponível, precisamos usar um comando ainda para formata-la e especificar o tipo
+de Sistema de Arquivo que iremos querer usar, através do comando:
+
+	"mkfs.(sistema de arquivo especifico) (caminho da partição)" - Para formatar a partição criada.
+
+O processo de criar um novo disco não foi feito pois estou usando o sistema do Ubuntu via AWS.
+
+Depois de formatado, o disco precisa ser montando em algum lugar para que possa ser guardado arquivos nele e esse
+processo é simples de ser executado:
+
+	"mount /dev/xvda2 /mnt/disco2" - "mount" é o comnado, "/dev/xvda2" é onde está o disco que vai ser montando
+						   "/mnt/disco2" foi o caminho onde eu quis que o disco fosse montado.
+	"umont /dev/xvda2" - Desmonta o disco.
+
+Discos/Partições precisam ser montadas sempre que a máquina for reinicializada, mas existe uma maneira disto ser feito
+de forma automática, para isso vamos precisar editar um arquivo do sistema.
+
+1. digite "nano /etc/fstab" para acessar o arquivo
+2. dentro do arquivo passe o comando "/dev/xvda2 /disk2 ext4 defaults 0 0"
+3. salve o arquivo
+
+Pronto, dessa forma, toda vez que o sistema for reiniciado, o disco "xvda2" será automáticamente montado no diretório
+"disk2" com o Sistema de Arquivo padrão "ext4".
+
+Aula 11 - Copiando e Manipulando arquivos
+Copiando arquivos:
+cp /home/ubuntu/arquivo.txt /disk2/
+cp /home/ubuntu/*.txt /disk2
+cp ./a* /disk2
+cp ./* /disk2 -i
+cp ./* /disk2 -i -r
+cp ./* /disk2 -i -r -v
+cp ./s* /disk2/backup/ -i -r -v
+
+Movendo e Renomeando arquivos:
+mv ./arquivo.txt /disk2
+mv ./arquivo.txt /disk2 -i -v
+mv arquivo.txt rafael.txt
