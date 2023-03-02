@@ -1,4 +1,5 @@
 1. Abrir o Git Bash
-2. "git add ." ou "git add -a" - Adicionar todas as atualizações para upload no github
-3. "git commit -m (mensagem)" - Adicionar uma mensagem a atualização do github
-4. "git push origin main" - Para finalizar a atualização das pastas do github
+2. "git clone (url)" - Clonar os arquivos do GitHub no computador
+3. "git add ." ou "git add -a" - Adicionar todas as atualizações para upload no github
+4. "git commit -m (mensagem)" - Adicionar uma mensagem a atualização do github
+5. "git push origin main" - Para finalizar a atualização das pastas do github
