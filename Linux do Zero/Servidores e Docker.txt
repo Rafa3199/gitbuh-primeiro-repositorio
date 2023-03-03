@@ -1,0 +1,29 @@
+Acesso Remoto (via Windows) a pasta criada no OS Linux:
+- Instalar o "samba" via apt
+- Acessar o arquivo de configuração do samba através do "nano etc/samba/smb.conf"
+- Reiniciar o sistema através do "systemctl restart smbd"
+- Checar o status da aplicação através do "systemctl status smbd"
+- Automatizar a inicialização da aplicação através do "systemctl enable smbd"
+- Acessar a pasta publica através do Windows via o endereço "\\(IP)\(nome da pasta)"
+- Mapear Unidade de Rede no Windows para um acesso mais simplificado da pasta:
+	- Criar uma nova unidade de rede clicando com o botão direito no "Este Computador"
+	- Clicar na opção "Mapear unidade de rede..."
+	- Especificar a unidade
+	- Colocar o endereço da pasta "\\(IP)\(nome da pasta)
+
+Servidores Web via Linux:
+- Instalar o apache2 via apt
+- Colocar o endereço do ip num browser
+- Usar via terminal o "cd" para acessar o site do servidor apontado "cd /var/www/html/"
+- Excluir o arquivo "index.html" que vai estar dentro desse servidor
+- Criar um novo arquivo "nano index.html"
+	"<html>
+			<h1> Este é o meu site HTML disponível em um servidor Linux </h1>
+	</html>
+- Pronto, o site está pronto, através de um servidor Linux.
+- Este site está disponível apenas no rede local, para acesso publico, é necessário um ip fixo
+
+Aplicações Web em Servidores Linux:
+- É possível, copiando o código de um repositório do github, colocar as informações no site via Linux
+- Para isso, usamos o "wget (link do .zip do repositório) numa pasta qualquer do nosso Ubuntu
+- Depois o "cp" para copiar os arquivos dentro do "/var/www/html"
