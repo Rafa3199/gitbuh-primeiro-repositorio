@@ -27,3 +27,18 @@ Aplicações Web em Servidores Linux:
 - É possível, copiando o código de um repositório do github, colocar as informações no site via Linux
 - Para isso, usamos o "wget (link do .zip do repositório) numa pasta qualquer do nosso Ubuntu
 - Depois o "cp" para copiar os arquivos dentro do "/var/www/html"
+
+Banco de Dados via Linux:
+- Instalar o banco de dados, nesse caso o MySQL, através do apt
+- Acessar o banco de dados com o comando "mysql -u root - p", para ter acesso como "root"
+- Use o comando "show databases;" para listar os bancos de dados existentes
+	- Detalhe para a necessidade do uso do ";" no final do comando dentro do MySQL
+- Crie um banco de dado através do código "create database meubanco;"
+- Use o comando "use meubanco;" para utilizar o banco de dados
+- Crie um arquivo de tabela com o comando "create table Pessoas (PessoaID int, Nome varchar(50), Sobrenome varchar (50), Endereco varchar (100), Cidade varchar (50));"
+- Liste as tabelas criadas com o comando "show tables;"
+- Adicione informações na tabela com o comando "insert into Pessoas (PessoaID, Nome, Sobrenome, Endereco, Cidade) VALUES (1, 'Carlos', 'da Silva', 'Av. do Carmo, 500', 'Jaboticabal-SP');
+- Para visualizar a tabela, use o comando "select * from Pessoas;"
+
+
+ATENÇÃO: O acesso a um IP publico via AWS é feito pelo IP da instância criada, não do sistema Ubuntu logado.
